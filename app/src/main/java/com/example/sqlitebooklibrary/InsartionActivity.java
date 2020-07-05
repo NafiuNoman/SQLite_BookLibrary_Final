@@ -2,6 +2,7 @@ package com.example.sqlitebooklibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -42,6 +43,9 @@ public class InsartionActivity extends AppCompatActivity {
         int pagenumber = Integer.parseInt(page.getText().toString());
 
         mydatabase.addBook(bookname,pagenumber,authorname);
+
+        Intent intent  = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
 
