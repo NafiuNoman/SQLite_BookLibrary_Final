@@ -16,7 +16,7 @@ public class Mydatabase extends SQLiteOpenHelper {
     private static final String dataBaseName ="book.db" ;
     private static final int dataBaseVersion=3;
     Context context;
-    public Mydatabase(@Nullable Context context) {
+     Mydatabase(@Nullable Context context) {
 
         super(context, dataBaseName, null, dataBaseVersion);
         this.context=context;
@@ -57,6 +57,8 @@ public class Mydatabase extends SQLiteOpenHelper {
         contentValues.put("author_name",authorName);
 
 
+
+
        long row = db.insert("my_book",null,contentValues);
 
        if (row==-1)
@@ -73,14 +75,38 @@ public class Mydatabase extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String qury =" SELECT *FROM my_book ";
+        String query =" SELECT *FROM my_book ";
         Cursor cursor = null;
 
         if(db!=null){
-            cursor = db.rawQuery(qury,null);
+            cursor = db.rawQuery(query,null);
         }
 
         return cursor;
+    }
+
+
+
+    void updateData(String rowId, String book, String author, String pageCount)
+    {
+
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("book_name",book);
+        contentValues.put("author_name",author);
+        contentValues.put("page_number",pageCount);
+
+
+        long row = database.update("my_book",contentValues," id=? ", new String[] {rowId});
+       
+       if(row== -1)
+       {
+           Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+       }else Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
+
+
     }
 
 }

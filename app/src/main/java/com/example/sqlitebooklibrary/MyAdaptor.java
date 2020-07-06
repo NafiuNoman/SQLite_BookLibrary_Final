@@ -64,6 +64,7 @@ public class MyAdaptor extends RecyclerView.Adapter <MyAdaptor.MyViewHolder> {
                intent.putExtra("bookName",String.valueOf(bookNameId.get(position)));
                intent.putExtra("authorName",String.valueOf(authorNameId.get(position)));
                intent.putExtra("pageNumber",String.valueOf(pagesId.get(position)));
+               intent.putExtra("id",String.valueOf(bookId.get(position)));
 
                context.startActivity(intent);
            }
