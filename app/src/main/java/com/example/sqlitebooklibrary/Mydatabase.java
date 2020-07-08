@@ -109,5 +109,20 @@ public class Mydatabase extends SQLiteOpenHelper {
 
     }
 
+
+
+    void deleteData(String rowId)
+    {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+       long row= database.delete("my_book","id=?", new String[]{rowId});
+       if(row== -1)
+       {
+           Toast.makeText(context, "Failed To Delete", Toast.LENGTH_SHORT).show();
+       }else Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+
+    }
+
+
 }
 
